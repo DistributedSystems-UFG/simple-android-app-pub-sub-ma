@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends AppCompatActivity {
+
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
         textView.setText(message);
+        this.message = message;
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, SendMessageActivity.class);
+        intent.putExtra("nomePessoa", this.message);
+        startActivity(intent);
     }
 }
